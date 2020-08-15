@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Tv</string>
+    <string name="log_in">Log In</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="tv">TV</string>
+    <string name="youtube">Youtube</string>
+    <string name="cache">Cache</string>
+    <string name="link">Link</string>
+</resources>

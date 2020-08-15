@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#202020</color>
+    <color name="colorPrimaryDark">#010102</color>
+    <color name="colorAccent">#650202</color>
+    <color name="gray">#adadad</color>
+    <color name="white">#FFFFFF</color>
+    <color name="windowBackground">#202020</color>
+
+    <color name="channelViewFocused">#80650202</color>
+    <color name="buttonFocused">#70615e5e</color>
+    <color name="transparent">#00FFFFFF</color>
+</resources>

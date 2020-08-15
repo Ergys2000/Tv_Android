@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/speed_icon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/ic_speed_foreground" />
+
+    <Spinner
+        android:id="@+id/speed"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_toEndOf="@id/speed_icon" />
+
+
+
+    <ImageView
+        android:id="@+id/volume_icon"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/speed_icon"
+        app:srcCompat="@drawable/ic_volume_foreground" />
+
+    <Switch
+        android:id="@+id/volume_switch"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_below="@id/speed"
+        android:layout_toEndOf="@id/volume_icon" />
+
+
+</RelativeLayout>
