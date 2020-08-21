@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:show_buffering="true"
+        app:show_buffering="always"
         app:surface_type="surface_view"
         app:controller_layout_id="@layout/exo_player_control_view"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

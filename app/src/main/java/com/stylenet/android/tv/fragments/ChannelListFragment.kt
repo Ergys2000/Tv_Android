@@ -28,7 +28,7 @@ class ChannelListFragment: Fragment() {
     // every time we get an instance of this class we use this function
     // even though right now it does nothing later we can add stuff
     companion object{
-        fun getInstance(): Fragment{
+        fun newInstance(): Fragment{
             return ChannelListFragment()
         }
     }

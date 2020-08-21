@@ -5,6 +5,7 @@ import com.stylenet.android.tv.models.Channel
 
 class ChannelListViewModel: ViewModel() {
     var channels: ArrayList<Channel> = arrayListOf(
+        Channel("Skate 4K", "http://sample.vodobox.com/skate_phantom_flex_4k/skate_phantom_flex_4k.m3u8"),
         Channel("RTSH Sport", "http://edge01eu.ekranet.com:80/rtshsport_240p/index.m3u8"),
         Channel("Euro Al", "http://5.135.92.131:1935/live/euroAl/chunklist.m3u8"),
         Channel("PeaceTV", "http://82.114.67.178:8081/hls/PeaceTV.m3u8"),

@@ -13,8 +13,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.source.MediaSource
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.source.hls.HlsMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import com.google.android.exoplayer2.ui.AspectRatioFrameLayout
 import com.google.android.exoplayer2.ui.PlayerView
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
@@ -73,18 +75,12 @@ class ChannelViewFragment: Fragment(), SettingsDialogFragment.Callbacks{
         super.onStop()
         releasePlayer()
     }
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-    override fun onDetach() {
-        super.onDetach()
-    }
 
     // creates the media source for the current url
     private fun createMediaSource(): MediaSource {
         val dataSourceFactory = DefaultDataSourceFactory(context,
-            Util.getUserAgent(context, "stylenet"))
-        val mediaSource = HlsMediaSource.Factory(dataSourceFactory)
+            Util.getUserAgent(requireContext(), "stylenet"))
+        val mediaSource = ProgressiveMediaSource.Factory(dataSourceFactory)
             .createMediaSource(Uri.parse(url))
         return mediaSource
     }
@@ -97,14 +93,15 @@ class ChannelViewFragment: Fragment(), SettingsDialogFragment.Callbacks{
     private fun initializePlayer(){
         try{
             val loadControl = makeCustomLoadControl()
-            player = ExoPlayerFactory.newSimpleInstance(
-                DefaultRenderersFactory(context),
-                DefaultTrackSelector(),
-                loadControl)
+            player = SimpleExoPlayer.Builder(requireContext())
+                .setLoadControl(loadControl)
+                .build()
+            player.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING
             playerView.player = player
             setButtonActions()
             player.prepare(createMediaSource())
             player.playWhenReady = true
+            playerView.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIT
         }catch(e: Exception){
             Toast.makeText(context, e.toString(), Toast.LENGTH_LONG).show()
         }
@@ -124,7 +121,7 @@ class ChannelViewFragment: Fragment(), SettingsDialogFragment.Callbacks{
     }
 
     private fun setButtonActions(){
-        playerView.findViewById<ImageButton>(R.id.back).apply{
+        playerView.findViewById<ImageButton>(R.id.channel_list).apply{
             setOnClickListener {
                 requireActivity().onBackPressed()
             }
@@ -144,6 +141,7 @@ class ChannelViewFragment: Fragment(), SettingsDialogFragment.Callbacks{
 
                 val fragmentManager = childFragmentManager
                 val fragment = SettingsDialogFragment.newInstance(isChecked, speed)
+                //val fragment = ChannelListDialogFragment()
                 fragment.show(fragmentManager, "dialog")
             }
             setOnFocusChangeListener { v, hasFocus ->
@@ -192,7 +190,7 @@ class ChannelViewFragment: Fragment(), SettingsDialogFragment.Callbacks{
 
     override fun onSpeedChanged(value: Float) {
         val playbackParameters = PlaybackParameters(value)
-        player.playbackParameters = playbackParameters
+        player.setPlaybackParameters(playbackParameters)
     }
 }
 

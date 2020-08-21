@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#202020</color>
+    <color name="colorPrimaryTransparent">#90000000</color>
     <color name="colorPrimaryDark">#010102</color>
     <color name="colorAccent">#650202</color>
     <color name="gray">#adadad</color>
